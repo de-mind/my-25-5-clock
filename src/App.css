@@ -10,7 +10,7 @@ body {
 .clock-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   width: 360px;
   background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
   border-radius: 24px;
@@ -25,17 +25,17 @@ body {
 .display-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1.3rem;
-  margin-bottom: 2rem;
+  justify-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 #time-left {
   font-family: 'Orbitron', 'Courier New', monospace;
   color: #fff;
-  font-size: 2.9rem;
+  font-size: 2.5rem;
   letter-spacing: 2.5px;
-  padding: 0.66em 1.3em;
+  padding: 0.5em 1em 0.5em 0.7em;
   border-radius: 14px;
   background: #222;
   box-shadow: 0 3px 14px rgba(0,0,0,0.2);
@@ -46,7 +46,7 @@ body {
 #timer-label {
   font-family: 'Orbitron', Arial, sans-serif;
   color: #2d98da;
-  font-size: 1.18rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-left: 10px;
   background: #181818;
@@ -163,9 +163,8 @@ button:hover {
   margin-top: 0.2rem;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light ) {
   body { background-color: #f0f0f0; }
   .clock-container { background: #fff; }
   #timer-label { color: #6fb1e7; background: #eee;}
@@ -176,4 +175,30 @@ button:hover {
   button:hover { background: #bbb; }
   #reset { background: #e27d7d; }
   #start_stop { background: #6fb1e7; }
+}
+
+@media (max-width: 600px) {
+  .clock-container {
+    width: 70%;
+    padding: 5% 2% 3% 2%;
+  }
+  .display-row {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  #time-left {
+    font-size: 2rem;
+    padding: 0.4em 0.8em 0.4em 0.6em;
+  }
+  .length-buttons-vertical {
+    width: 50%;
+    gap: 0.4rem;
+  }
+  #start_stop, #reset {
+    min-width: 100px;
+    font-size: 1rem;
+    height: 50px;
+  }
+  
 }
