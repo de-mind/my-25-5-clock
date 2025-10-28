@@ -60,6 +60,64 @@ body {
   align-items: center;
 }
 
+/* Etiquetas */
+
+#break-length,
+#session-length {
+  /* Usar primero fuente digital, después fallback retro, luego monospace */
+  font-family: 'Digital-7', 'DS-Digital', 'VT323', monospace;
+  letter-spacing: 1.5px;
+  font-size: 2em;
+  text-transform: uppercase;
+  background: none;
+  color: #339933;
+  text-shadow: 0 1px 0 #020, 0 2px 1px #080;
+}
+
+/* Botones principales (start/stop y reset) */
+#session-increment,
+#session-decrement,
+#break-increment,
+#break-decrement,
+
+
+#start_stop,
+#reset {
+  font-family: 'Quartz', 'Segment7', 'Orbitron', Arial, sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #333c4a;
+  color: #e9e9e9;
+  border: 2px solid #454e5c;
+  border-radius: 4px;
+  padding: 10px 18px;
+  box-shadow: 0 2px 5px rgba(40,40,40,0.15);
+  margin: 6px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#start_stop:hover,
+#reset:hover {
+  background-color: #2a3140;
+  color: #aee253;
+}
+
+/* Botones de incremento/decremento */
+#break-label,
+#session-label,
+button[id$="increment"], button[id$="decrement"] {
+  font-family: 'Quartz', 'Segment7', 'Orbitron', Arial, sans-serif;
+  background-color: #22282f;
+  color: #98d1e2;
+  border-radius: 4px;
+  padding: 8px 12px;
+  border: 1px solid #444;
+  font-size: 1em;
+  margin: 3px 5px;
+}
+
 .length-controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -74,7 +132,7 @@ body {
   align-items: center;
 }
 
-#break-label,
+/*#break-label,
 #session-label {
   color: #2d98da;
   font-size: 1.2rem;
@@ -83,7 +141,7 @@ body {
   letter-spacing: 1px;
   text-align: center;
   background: transparent;
-}
+}*/
 
 .length-buttons-vertical {
   display: flex;
@@ -91,15 +149,12 @@ body {
   align-items: center;
   gap: 0.6rem;
 }
+/*#start_stop,
+#reset,
+*/
 
 button,
-.length-control button,
-#start_stop,
-#reset,
-#break-increment,
-#break-decrement,
-#session-increment,
-#session-decrement {
+.length-control button{
   background-color: #222;
   color: #eee;
   border: none;
