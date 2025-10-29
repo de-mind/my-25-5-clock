@@ -151,14 +151,16 @@ class MyTimer extends React.Component {
     return (
 <div id="timer" className="clock-container">
   <div className="display-row">
-    <div id="time-left">{this.timeFormatter(this.state.timer)}</div>
-    <div id="timer-label" style={{ color: this.state.color }}>
+    <div id="time-left">{this.timeFormatter(this.state.timer)}
+          <div id="timer-label  " style={{ color: this.state.color }}>
           {this.state.isSession ? "Session" : "Break"}
+          </div>
           <audio
             id="beep"
             src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
           ></audio>
-        </div>
+    </div>
+
   </div>
 
   <div className="length-controls">

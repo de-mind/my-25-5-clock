@@ -30,27 +30,47 @@ body {
   margin-bottom: 1rem;
 }
 
+
 #time-left {
-  font-family: 'Orbitron', 'Courier New', monospace;
-  color: #fff;
+  font-family: 'Digital-7', 'DS-Digital', 'VT323', monospace;
+  border: 1px dotted rgba(255, 255, 255, 0.3);
   font-size: 2.5rem;
   letter-spacing: 2.5px;
-  padding: 0.5em 1em 0.5em 0.7em;
-  border-radius: 14px;
-  background: #222;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.2);
-  text-align: center;
-  min-width: 130px;
+  padding: 0.5em 3em;
+  text-align: left;
+  text-transform: uppercase;
+  background: rgb(11, 22, 11);
+  color: #a6a6a6;
+  text-shadow: 0 1px 1px rgba(5, 56, 5, 0.762), 0 1px 1px rgb(0, 84, 0);
+  box-shadow: inset 0 2px 8px rgba(41, 41, 41, 0.893);
+ min-width: 130px;
+}
+#timer-label {
+ float: right;
+ clear: left;
+ font-size: .5em;
 }
 
-#timer-label {
+
+#session-label{
   font-family: 'Orbitron', Arial, sans-serif;
-  color: #2d98da;
+  color: #1b7a08;
   font-size: 1rem;
   font-weight: bold;
   margin-left: 10px;
-  background: #181818;
-  border-radius: 8px;
+  padding: 11px 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  height: max-content;
+  display: flex;
+  align-items: center;
+}
+#break-label {
+  font-family: 'Orbitron', Arial, sans-serif;
+  color: #8a1e1e;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 10px;
   padding: 11px 18px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.13);
   text-transform: uppercase;
@@ -68,17 +88,17 @@ body {
   font-family: 'Digital-7', 'DS-Digital', 'VT323', monospace;
   letter-spacing: 1.5px;
   font-size: 2em;
+  border: 1px dotted rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
-  background: none;
-  color: #339933;
-  text-shadow: 0 1px 0 #020, 0 2px 1px #080;
+  background: rgb(11, 22, 11);
+  color: #a6a6a6;
+  text-shadow: 0 1px 1px rgba(5, 56, 5, 0.762), 0 1px 1px rgb(0, 84, 0);
+  box-shadow: inset 0 2px 8px rgba(41, 41, 41, 0.893);
+  padding: 6px 22px;
 }
 
 /* Botones principales (start/stop y reset) */
-#session-increment,
-#session-decrement,
-#break-increment,
-#break-decrement,
+
 
 
 #start_stop,
@@ -105,17 +125,23 @@ body {
 }
 
 /* Botones de incremento/decremento */
-#break-label,
-#session-label,
+#session-increment,
+#session-decrement,
+#break-increment,
+#break-decrement,
 button[id$="increment"], button[id$="decrement"] {
   font-family: 'Quartz', 'Segment7', 'Orbitron', Arial, sans-serif;
-  background-color: #22282f;
+  background-color: #1f2327;
   color: #98d1e2;
   border-radius: 4px;
   padding: 8px 12px;
   border: 1px solid #444;
   font-size: 1em;
   margin: 3px 5px;
+  box-shadow: 
+    0 2px 6px rgba(40, 40, 40, 0.8),
+    0 0 0 1px rgba(78, 78, 78, 0.392),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .length-controls {
@@ -124,12 +150,15 @@ button[id$="increment"], button[id$="decrement"] {
   gap: 2.4rem;
   justify-content: center;
   margin: 0 auto;
+
 }
 
 .length-control {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-style: 5px solid #aaaaaa;
+  padding: 0.9rem;
 }
 
 /*#break-label,
@@ -176,24 +205,13 @@ button:hover {
   background: #444;
 }
 
-#break-length, #session-length {
-  color: #70c1b3;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 7px 0;
-  text-align: center;
-  min-width: 30px;
-  background: none;
-  display: block;
-}
-
 #start_stop {
   background-color: #2d98da;
   color: #fff;
   min-width: 120px;
-  font-size: 1.18rem;
+  font-size: 1rem;
   font-weight: bold;
-  padding: 0;
+  padding: 8px;
   height: 60px;
 }
 
@@ -201,7 +219,7 @@ button:hover {
   background-color: #b33939;
   color: #fff;
   min-width: 120px;
-  font-size: 1.18rem;
+  font-size: 1rem;
   font-weight: bold;
   padding: 0;
   height: 60px;
