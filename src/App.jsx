@@ -1,5 +1,5 @@
-import * as React from "react"
-import "./App.css"
+import * as React from "react";
+import "./App.scss";
 
 class MyTimer extends React.Component {
   state = {
@@ -149,46 +149,61 @@ class MyTimer extends React.Component {
 
   render() {
     return (
-<div id="timer" className="clock-container">
-  <div className="display-row">
-    <div id="time-left">{this.timeFormatter(this.state.timer)}
-          <div id="timer-label  " style={{ color: this.state.color }}>
-          {this.state.isSession ? "Session" : "Break"}
+      <div id="timer" className="clock-container">
+        <div className="display-row">
+          <div id="time-left">
+            <span id="time-clock"> {this.timeFormatter(this.state.timer)}</span>
+            <span id="timer-label  " style={{ color: this.state.color }}>
+              {this.state.isSession ? "Session" : "Break"}
+            </span>
+            <audio
+              id="beep"
+              src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
+            ></audio>
           </div>
-          <audio
-            id="beep"
-            src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
-          ></audio>
-    </div>
+        </div>
 
-  </div>
+        <div className="length-controls">
+          <div className="length-control">
+            <span id="break-label" className="length-label">
+              Break Length
+            </span>
+            <div className="length-buttons-vertical">
+              <button id="break-increment" onClick={this.incBreakHandler}>
+                +
+              </button>
+              <span id="break-length">{this.state.breakLength}</span>
+              <button id="break-decrement" onClick={this.decBreakHandler}>
+                -
+              </button>
+            </div>
+          </div>
 
-  <div className="length-controls">
-    <div className="length-control">
-      <span id="break-label" className="length-label">Break Length</span>
-      <div className="length-buttons-vertical">
-        <button id="break-increment" onClick={this.incBreakHandler}>+</button>
-        <span id="break-length">{this.state.breakLength}</span>
-        <button id="break-decrement" onClick={this.decBreakHandler}>-</button>
+          <div className="length-control">
+            <span id="session-label" className="length-label">
+              Session Length
+            </span>
+            <div className="length-buttons-vertical">
+              <button id="session-increment" onClick={this.incSessionHandler}>
+                +
+              </button>
+              <span id="session-length">{this.state.sessionLength}</span>
+              <button id="session-decrement" onClick={this.decSessionHandler}>
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="clock-buttons">
+          <button id="start_stop" onClick={this.startStopHandler}>
+            Start/Stop
+          </button>
+          <button id="reset" onClick={this.resetHandler}>
+            Reset
+          </button>
+        </div>
       </div>
-    </div>
-
-    <div className="length-control">
-      <span id="session-label" className="length-label">Session Length</span>
-      <div className="length-buttons-vertical">
-        <button id="session-increment" onClick={this.incSessionHandler}>+</button>
-        <span id="session-length">{this.state.sessionLength}</span>
-        <button id="session-decrement" onClick={this.decSessionHandler}>-</button>
-      </div>
-    </div>
-  </div>
-
-  <div className="clock-buttons">
-    <button id="start_stop" onClick={this.startStopHandler}>Start/Stop</button>
-    <button id="reset" onClick={this.resetHandler}>Reset</button>
-  </div>
-</div>
-
     );
   }
 }

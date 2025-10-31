@@ -1,0 +1,278 @@
+// Variables
+$display-font: "Digital-7", "DS-Digital", "VT323", monospace;
+$label-font: "Orbitron", Arial, sans-serif;
+$button-font: "Quartz", "Segment7", "Orbitron", Arial, sans-serif;
+$bg-dark: #121212;
+$bg-grad: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+$border-radius: 24px;
+
+// Mixins
+@mixin box($color, $pad, $radius: 4px) {
+  background-color: $color;
+  border-radius: $radius;
+  padding: $pad;
+}
+@mixin font($family, $size, $weight: normal, $ls: normal, $tt: uppercase) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: $ls;
+  text-transform: $tt;
+}
+@mixin btn($bg, $color, $f: $button-font, $fz: 1em, $h: 60px, $minw: 80px) {
+  font-family: $f;
+  background: $bg;
+  color: $color;
+  font-size: $fz;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  min-width: $minw;
+  min-height: $h;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s all;
+  padding: 0;
+}
+
+// Body & estructura
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: $bg-dark;
+}
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 360px;
+  background: $bg-grad;
+  border-radius: $border-radius;
+  padding: 42px 32px 36px 32px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  .display-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Etiquetas */
+
+  #break-length,
+  #session-length {
+    @include font($display-font, 2em, normal, 1.5px);
+    border: 1px dotted rgba(255, 255, 255, 0.3);
+    background: rgb(11, 22, 11);
+    color: #a6a6a6;
+    text-shadow: 0 1px 1px rgba(5, 56, 5, 0.76), 0 1px 1px rgb(0, 84, 0);
+    text-align: left;
+    box-shadow: inset 0 2px 8px rgba(41, 41, 41, 0.89);
+    padding: 6px 22px;
+    text-transform: uppercase;
+  }
+
+  #time-left {
+    font-family: "Digital-7", "DS-Digital", "VT323", monospace;
+    border: 1px dotted rgba(255, 255, 255, 0.3);
+    font-size: 2.5rem;
+    letter-spacing: 2.5px;
+    padding: 0.5em 3em;
+    text-align: left;
+    text-transform: uppercase;
+    background: rgb(11, 22, 11);
+    color: #a6a6a6;
+    text-shadow: 0 1px 1px rgba(5, 56, 5, 0.762), 0 1px 1px rgb(0, 84, 0);
+    box-shadow: inset 0 2px 8px rgba(41, 41, 41, 0.893);
+    min-width: 130px;
+  }
+
+  #time-clock {
+    float: left;
+    clear: both;
+    font-size: 1em;
+  }
+  #timer-label {
+    float: right;
+    clear: both;
+    font-size: 0.5em;
+  }
+
+  #session-label,
+  #break-label {
+    @include font($label-font, 1rem, bold, 1.5px);
+    margin-left: 10px;
+    padding: 11px 18px;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    &.session-label {
+      color: #1b7a08;
+    }
+    &.break-label {
+      color: #8a1e1e;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+    }
+  }
+  #session-label {
+    color: #1b7a08;
+  }
+  #break-label {
+    color: #8a1e1e;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+  }
+  .length-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .length-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: 5px solid #aaa;
+    padding: 0.9rem;
+  }
+  .length-buttons-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .clock-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.3rem;
+    margin-top: 0.2rem;
+  }
+
+  // Botones principales
+  #start_stop,
+  #reset {
+    @include btn(#333c4a, #e9e9e9);
+    font-size: 0.75em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid #454e5c;
+    margin: 6px 8px;
+    box-shadow: 0 2px 5px rgba(40, 40, 40, 0.15);
+
+    &:hover {
+      background: #2a3140;
+      color: #aee253;
+    }
+  }
+  #start_stop {
+    background-color: #2d98da;
+    color: #fff;
+    min-width: 120px;
+    font-size: 1rem;
+    padding: 8px;
+    height: 60px;
+  }
+  #reset {
+    background-color: #b33939;
+    color: #fff;
+    min-width: 120px;
+    font-size: 1rem;
+    height: 60px;
+    &:hover {
+      background: #d94a4a;
+    }
+  }
+  // Botones de inc/dec
+  #session-increment,
+  #session-decrement,
+  #break-increment,
+  #break-decrement,
+  button[id$="increment"],
+  button[id$="decrement"] {
+    @include btn(#1f2327, #98d1e2);
+    border-radius: 4px;
+    padding: 8px 12px;
+    border: 1px solid #444;
+    font-size: 1em;
+    margin: 3px 5px;
+    box-shadow: 0 2px 6px rgba(40, 40, 40, 0.8),
+      0 0 0 1px rgba(78, 78, 78, 0.39), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+  button,
+  .length-control button {
+    @include btn(#222, #eee);
+    font-size: 1.33rem;
+    &:hover {
+      background: #444;
+    }
+  }
+}
+
+// Responsive y color scheme
+@media (prefers-color-scheme: light) {
+  body {
+    background: #f0f0f0;
+  }
+  .clock-container {
+    background: #fff;
+  }
+  #timer-label {
+    color: #6fb1e7;
+    background: #eee;
+  }
+  #time-left {
+    background: #fff;
+    color: #222;
+  }
+  button,
+  .length-control button,
+  #start_stop,
+  #reset {
+    background: #ddd;
+    color: #222;
+  }
+  button:hover {
+    background: #bbb;
+  }
+  #reset {
+    background: #e27d7d;
+  }
+  #start_stop {
+    background: #6fb1e7;
+  }
+}
+
+@media (max-width: 600px) {
+  .clock-container {
+    width: 70%;
+    padding: 5% 2% 3% 2%;
+  }
+  .display-row {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  #time-left {
+    font-size: 2rem;
+    padding: 0.4em 0.8em 0.4em 0.6em;
+  }
+  .length-buttons-vertical {
+    width: 50%;
+    gap: 0.4rem;
+  }
+  #start_stop,
+  #reset {
+    min-width: 100px;
+    font-size: 1rem;
+    height: 50px;
+  }
+}
