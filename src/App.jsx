@@ -9,7 +9,7 @@ class MyTimer extends React.Component {
     intervalId: null,
     isSession: true, // true for session, false for break
     isRunning: false, // true if timer is running
-    color: "white",
+    color: "hsla(0, 0%, 55%, 1)", // default color
   };
 
   timeInterval = () => {
@@ -19,7 +19,9 @@ class MyTimer extends React.Component {
           timer: prevState.timer > 0 ? prevState.timer - 1 : 0,
         }),
         () => {
-          this.setState({ color: this.state.timer <= 60 ? "red" : "white" });
+          this.setState({
+            color: this.state.timer <= 60 ? "#8a1e1e" : "#13a402ff",
+          });
           if (this.state.timer === 0) {
             this.warningHandler();
             this.clearTimeInterval();
@@ -30,7 +32,7 @@ class MyTimer extends React.Component {
           }
         }
       );
-    }, 1000);
+    }, 100);
     this.setState({ intervalId: timer });
   };
 
@@ -58,10 +60,10 @@ class MyTimer extends React.Component {
     this.setState({
       isSession: true,
       isRunning: false,
-      color: "white",
-      breakLength: 5,
-      sessionLength: 25,
-      timer: 1500,
+      color: "hsla(0, 0%, 55%, 1)",
+      breakLength: 1,
+      sessionLength: 1,
+      timer: this.state.sessionLength * 60,
     });
   };
 
@@ -88,8 +90,8 @@ class MyTimer extends React.Component {
   }
 
   warningHandler = () => {
-    const audio = document.getElementById("beep");
-    audio.play();
+    //const audio = document.getElementById("beep");
+    //audio.play();
   };
 
   decSessionHandler = () => {
@@ -150,17 +152,19 @@ class MyTimer extends React.Component {
   render() {
     return (
       <div id="timer" className="clock-container">
-        <div className="display-row">
-          <div id="time-left">
-            <span id="time-clock"> {this.timeFormatter(this.state.timer)}</span>
-            <span id="timer-label  " style={{ color: this.state.color }}>
-              {this.state.isSession ? "Session" : "Break"}
-            </span>
-            <audio
-              id="beep"
-              src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
-            ></audio>
-          </div>
+        <div id="time-left">
+          <span id="time-clock"> {this.timeFormatter(this.state.timer)}</span>
+          <span
+            id="timer-label"
+            className={this.state.isSession ? "align-top" : "align-bottom"}
+            style={{ color: this.state.color }}
+          >
+            {this.state.isSession ? "session" : "break"}
+          </span>
+          <audio
+            id="beep"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
+          ></audio>
         </div>
 
         <div className="length-controls">
@@ -169,10 +173,10 @@ class MyTimer extends React.Component {
               Break Length
             </span>
             <div className="length-buttons-vertical">
+              <span id="break-length">{this.state.breakLength}</span>
               <button id="break-increment" onClick={this.incBreakHandler}>
                 +
               </button>
-              <span id="break-length">{this.state.breakLength}</span>
               <button id="break-decrement" onClick={this.decBreakHandler}>
                 -
               </button>
@@ -184,10 +188,10 @@ class MyTimer extends React.Component {
               Session Length
             </span>
             <div className="length-buttons-vertical">
+              <span id="session-length">{this.state.sessionLength}</span>
               <button id="session-increment" onClick={this.incSessionHandler}>
                 +
               </button>
-              <span id="session-length">{this.state.sessionLength}</span>
               <button id="session-decrement" onClick={this.decSessionHandler}>
                 -
               </button>

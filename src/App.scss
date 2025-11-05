@@ -1,5 +1,11 @@
+@font-face {
+  font-family: DS-DigitalB;
+  src: url("./assets/fonts/DS-Digital/DS-DIGIB.TTF") format("truetype");
+}
+
 // Variables
-$display-font: "Digital-7", "DS-Digital", "VT323", monospace;
+$display-font: "DS-DigitalB", "Digital-7", "VT323", "monospace";
+$display-color: hsla(0, 0%, 55%, 1);
 $label-font: "Orbitron", Arial, sans-serif;
 $button-font: "Quartz", "Segment7", "Orbitron", Arial, sans-serif;
 $bg-dark: #121212;
@@ -53,167 +59,172 @@ body {
   gap: 1rem;
   width: 360px;
   background: $bg-grad;
-  border-radius: $border-radius;
-  padding: 42px 32px 36px 32px;
-  margin: 0 auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  padding: 2% 4% 3% 4%;
+}
 
-  .display-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
+/* Etiquetas */
 
-  /* Etiquetas */
+#break-length,
+#session-length,
+#time-left {
+  @include font($display-font, 2em, normal, 1.5px);
+  color: $display-color;
+  border: 1px dotted rgba(81, 81, 81, 0.523);
+  background: rgb(13, 26, 49);
+  border-radius: 2px;
+  text-shadow: 0 1px 1px rgba(5, 56, 5, 0.76), 0 1px 1px rgb(0, 84, 0);
+  box-shadow: 0 1px 2px 1px rgb(0, 0, 0),
+    inset 0 2px 8px rgba(33, 40, 33, 0.693);
+  text-transform: uppercase;
+}
 
-  #break-length,
-  #session-length {
-    @include font($display-font, 2em, normal, 1.5px);
-    border: 1px dotted rgba(255, 255, 255, 0.3);
-    background: rgb(11, 22, 11);
-    color: #a6a6a6;
-    text-shadow: 0 1px 1px rgba(5, 56, 5, 0.76), 0 1px 1px rgb(0, 84, 0);
-    text-align: left;
-    box-shadow: inset 0 2px 8px rgba(41, 41, 41, 0.89);
-    padding: 6px 22px;
-    text-transform: uppercase;
-  }
+#time-left {
+  display: flex;
+  padding: 0.5em 2em;
+  min-width: 130px;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 
-  #time-left {
-    font-family: "Digital-7", "DS-Digital", "VT323", monospace;
-    border: 1px dotted rgba(255, 255, 255, 0.3);
-    font-size: 2.5rem;
-    letter-spacing: 2.5px;
-    padding: 0.5em 3em;
-    text-align: left;
-    text-transform: uppercase;
-    background: rgb(11, 22, 11);
-    color: #a6a6a6;
-    text-shadow: 0 1px 1px rgba(5, 56, 5, 0.762), 0 1px 1px rgb(0, 84, 0);
-    box-shadow: inset 0 2px 8px rgba(41, 41, 41, 0.893);
-    min-width: 130px;
-  }
+#break-length,
+#session-length {
+  padding: 0.3em 0.6em;
+  width: 100%;
+  min-width: 70px;
+  text-align: center;
+}
 
-  #time-clock {
-    float: left;
-    clear: both;
-    font-size: 1em;
-  }
-  #timer-label {
-    float: right;
-    clear: both;
-    font-size: 0.5em;
-  }
+#time-clock {
+  @include font($display-font, 4rem, normal, 4px);
+  margin-right: 10px;
+}
+#timer-label {
+  @include font($display-font, 1.2rem, bold, 1.5px);
+  position: relative;
+  margin-left: 2px;
+  float: right;
+  white-space: nowrap;
+  max-width: calc(100% - 360px - 2px);
+  overflow-anchor: none;
+  text-overflow: ellipsis;
+}
 
-  #session-label,
-  #break-label {
-    @include font($label-font, 1rem, bold, 1.5px);
-    margin-left: 10px;
-    padding: 11px 18px;
-    height: max-content;
-    display: flex;
-    align-items: center;
-    &.session-label {
-      color: #1b7a08;
-    }
-    &.break-label {
-      color: #8a1e1e;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
-    }
-  }
-  #session-label {
+.align-top {
+  top: -0.5em;
+}
+
+.align-bottom {
+  top: 0.8em;
+}
+
+#session-label,
+#break-label {
+  @include font($label-font, 1rem, bold, 1.5px);
+  margin-left: 10px;
+  padding: 11px 18px;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  &.session-label {
     color: #1b7a08;
   }
-  #break-label {
+  &.break-label {
     color: #8a1e1e;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
   }
-  .length-controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.4rem;
-    justify-content: center;
-    margin: 0 auto;
-  }
-  .length-control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-style: 5px solid #aaa;
-    padding: 0.9rem;
-  }
-  .length-buttons-vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .clock-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1.3rem;
-    margin-top: 0.2rem;
-  }
+}
+#session-label {
+  color: #1b7a08;
+}
+#break-label {
+  color: #8a1e1e;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+}
+.length-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  justify-content: center;
+  margin: 0 auto;
+}
+.length-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: 5px solid #aaa;
+  padding: 0.9rem;
+}
+.length-buttons-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.clock-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.3rem;
+  margin-top: 0.2rem;
+}
 
-  // Botones principales
-  #start_stop,
-  #reset {
-    @include btn(#333c4a, #e9e9e9);
-    font-size: 0.75em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 2px solid #454e5c;
-    margin: 6px 8px;
-    box-shadow: 0 2px 5px rgba(40, 40, 40, 0.15);
+// Botones principales
+#start_stop,
+#reset {
+  @include btn(#333c4a, #e9e9e9);
+  font-size: 0.75em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 2px solid #454e5c;
+  margin: 6px 8px;
+  box-shadow: 0 2px 5px rgba(40, 40, 40, 0.15);
 
-    &:hover {
-      background: #2a3140;
-      color: #aee253;
-    }
+  &:hover {
+    background: #2a3140;
+    color: #aee253;
   }
-  #start_stop {
-    background-color: #2d98da;
-    color: #fff;
-    min-width: 120px;
-    font-size: 1rem;
-    padding: 8px;
-    height: 60px;
+}
+#start_stop {
+  background-color: #2d98da;
+  color: #fff;
+  min-width: 120px;
+  font-size: 1rem;
+  padding: 8px;
+  height: 60px;
+}
+#reset {
+  background-color: #b33939;
+  color: #fff;
+  min-width: 120px;
+  font-size: 1rem;
+  height: 60px;
+  &:hover {
+    background: #d94a4a;
   }
-  #reset {
-    background-color: #b33939;
-    color: #fff;
-    min-width: 120px;
-    font-size: 1rem;
-    height: 60px;
-    &:hover {
-      background: #d94a4a;
-    }
-  }
-  // Botones de inc/dec
-  #session-increment,
-  #session-decrement,
-  #break-increment,
-  #break-decrement,
-  button[id$="increment"],
-  button[id$="decrement"] {
-    @include btn(#1f2327, #98d1e2);
-    border-radius: 4px;
-    padding: 8px 12px;
-    border: 1px solid #444;
-    font-size: 1em;
-    margin: 3px 5px;
-    box-shadow: 0 2px 6px rgba(40, 40, 40, 0.8),
-      0 0 0 1px rgba(78, 78, 78, 0.39), inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  }
-  button,
-  .length-control button {
-    @include btn(#222, #eee);
-    font-size: 1.33rem;
-    &:hover {
-      background: #444;
-    }
+}
+// Botones de inc/dec
+#session-increment,
+#session-decrement,
+#break-increment,
+#break-decrement,
+button[id$="increment"],
+button[id$="decrement"] {
+  @include btn(#1f2327, #98d1e2);
+  border-radius: 4px;
+  padding: 8px 12px;
+  border: 1px solid #444;
+  font-size: 1em;
+  margin: 3px 5px;
+  box-shadow: 0 2px 6px rgba(40, 40, 40, 0.8), 0 0 0 1px rgba(78, 78, 78, 0.39),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+button,
+.length-control button {
+  @include btn(#222, #eee);
+  font-size: 1.33rem;
+  &:hover {
+    background: #444;
   }
 }
 
