@@ -8,7 +8,6 @@ $display-font: "DS-DigitalB", "Digital-7", "VT323", "monospace";
 $display-color: hsla(0, 0%, 55%, 1);
 $label-font: "Orbitron", Arial, sans-serif;
 $button-font: "Quartz", "Segment7", "Orbitron", Arial, sans-serif;
-$bg-dark: #121212;
 $bg-grad: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
 $border-radius: 24px;
 
@@ -51,11 +50,11 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-color: $bg-dark;
+  background-color: #121212;
 }
 .clock-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
   width: 360px;
   background: $bg-grad;
