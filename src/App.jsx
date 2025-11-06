@@ -169,21 +169,6 @@ class MyTimer extends React.Component {
 
         <div className="length-controls">
           <div className="length-control">
-            <span id="break-label" className="length-label">
-              Break Length
-            </span>
-            <div className="length-buttons-vertical">
-              <span id="break-length">{this.state.breakLength}</span>
-              <button id="break-increment" onClick={this.incBreakHandler}>
-                +
-              </button>
-              <button id="break-decrement" onClick={this.decBreakHandler}>
-                -
-              </button>
-            </div>
-          </div>
-
-          <div className="length-control">
             <span id="session-label" className="length-label">
               Session Length
             </span>
@@ -193,6 +178,21 @@ class MyTimer extends React.Component {
                 +
               </button>
               <button id="session-decrement" onClick={this.decSessionHandler}>
+                -
+              </button>
+            </div>
+          </div>
+
+          <div className="length-control">
+            <span id="break-label" className="length-label">
+              Break Length
+            </span>
+            <div className="length-buttons-vertical">
+              <span id="break-length">{this.state.breakLength}</span>
+              <button id="break-increment" onClick={this.incBreakHandler}>
+                +
+              </button>
+              <button id="break-decrement" onClick={this.decBreakHandler}>
                 -
               </button>
             </div>

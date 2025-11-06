@@ -8,14 +8,14 @@ $display-font: "DS-DigitalB", "Digital-7", "VT323", "monospace";
 $display-color: hsla(0, 0%, 55%, 1);
 $label-font: "Orbitron", Arial, sans-serif;
 $button-font: "Quartz", "Segment7", "Orbitron", Arial, sans-serif;
-$bg-grad: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+$bg-grad: linear-gradient(170deg, #434343 0%, #232323 100%);
 $border-radius: 24px;
 
 // Mixins
-@mixin box($color, $pad, $radius: 4px) {
-  background-color: $color;
+@mixin box($color, $padl, $padr, $radius: 4px) {
+  background: $color;
   border-radius: $radius;
-  padding: $pad;
+  padding: $padl $padr;
 }
 @mixin font($family, $size, $weight: normal, $ls: normal, $tt: uppercase) {
   font-family: $family;
@@ -55,10 +55,9 @@ body {
 .clock-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  width: 360px;
-  background: $bg-grad;
-  padding: 2% 4% 3% 4%;
+  max-width: min-content;
+  width: min-content;
+  @include box($bg-grad, 1rem, 1rem, $border-radius);
 }
 
 /* Etiquetas */
@@ -66,9 +65,8 @@ body {
 #break-length,
 #session-length,
 #time-left {
-  @include font($display-font, 2em, normal, 1.5px);
   color: $display-color;
-  border: 1px dotted rgba(81, 81, 81, 0.523);
+  border: 1px dotted rgba(179, 179, 179, 0.523);
   background: rgb(13, 26, 49);
   border-radius: 2px;
   text-shadow: 0 1px 1px rgba(5, 56, 5, 0.76), 0 1px 1px rgb(0, 84, 0);
@@ -78,36 +76,43 @@ body {
 }
 
 #time-left {
+  position: relative;
   display: flex;
-  padding: 0.5em 2em;
-  min-width: 130px;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   margin-bottom: 1rem;
+  min-width: 100%;
+  min-height: 100px;
+}
+
+/*#time-left::after {
+  content: "";
+  position: absolute;
+  clear: both;
+  display: table;
+}*/
+
+#time-clock {
+  @include font($display-font, 4rem, normal, 4px);
+  position: absolute;
+  padding: 0.6em 1em 0.6em 4em;
+  min-width: 360px;
+}
+
+#timer-label {
+  @include font($display-font, 1.2rem, bold, 1.5px);
+  position: absolute;
+  right: 0;
+  top: 30%;
 }
 
 #break-length,
 #session-length {
+  @include font($display-font, 2em, normal, 1.5px);
   padding: 0.3em 0.6em;
-  width: 100%;
+  width: 50%;
   min-width: 70px;
   text-align: center;
-}
-
-#time-clock {
-  @include font($display-font, 4rem, normal, 4px);
-  margin-right: 10px;
-}
-#timer-label {
-  @include font($display-font, 1.2rem, bold, 1.5px);
-  position: relative;
-  margin-left: 2px;
-  float: right;
-  white-space: nowrap;
-  max-width: calc(100% - 360px - 2px);
-  overflow-anchor: none;
-  text-overflow: ellipsis;
 }
 
 .align-top {
@@ -121,39 +126,29 @@ body {
 #session-label,
 #break-label {
   @include font($label-font, 1rem, bold, 1.5px);
-  margin-left: 10px;
-  padding: 11px 18px;
-  height: max-content;
-  display: flex;
-  align-items: center;
-  &.session-label {
-    color: #1b7a08;
-  }
-  &.break-label {
-    color: #8a1e1e;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
-  }
+  padding: 0.4em 0.8em;
+  text-align: center;
 }
+
 #session-label {
   color: #1b7a08;
 }
 #break-label {
   color: #8a1e1e;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
 }
 .length-controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2.4rem;
+  gap: 2rem;
   justify-content: center;
   margin: 0 auto;
+  min-width: 100%;
 }
 .length-control {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-style: 5px solid #aaa;
-  padding: 0.9rem;
+  min-width: 100%;
 }
 .length-buttons-vertical {
   display: flex;
@@ -164,8 +159,8 @@ body {
 .clock-buttons {
   display: flex;
   justify-content: center;
-  gap: 1.3rem;
-  margin-top: 0.2rem;
+  min-width: 100%;
+  gap: 2rem;
 }
 
 // Botones principales
