@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./App.scss";
+import "./App copy.scss";
 
 class MyTimer extends React.Component {
   state = {
@@ -197,15 +197,14 @@ class MyTimer extends React.Component {
               </button>
             </div>
           </div>
-        </div>
-
-        <div className="clock-buttons">
-          <button id="start_stop" onClick={this.startStopHandler}>
-            Start/Stop
-          </button>
-          <button id="reset" onClick={this.resetHandler}>
-            Reset
-          </button>
+          <div className="clock-buttons">
+            <button id="start_stop" onClick={this.startStopHandler}>
+              Start/Stop
+            </button>
+            <button id="reset" onClick={this.resetHandler}>
+              Reset
+            </button>
+          </div>
         </div>
       </div>
     );
