@@ -1,10 +1,11 @@
 @font-face {
-  font-family: DS-DigitalB;
+  font-family: "DS-Digital Bold";
   src: url("./assets/fonts/DS-Digital/DS-DIGIB.TTF") format("truetype");
 }
 
 // Variables
-$display-font: "DS-DigitalB", "DS-Digital", "Digital-7", "VT323", "monospace";
+$display-font: "DS-Digital Bold", "DS-Digital", "Digital-7", "VT323",
+  "monospace";
 $display-color: hsla(0, 0%, 55%, 1);
 $label-font: "Orbitron", Arial, sans-serif;
 $button-font: "Quartz", "Segment7", "Orbitron", Arial, sans-serif;
