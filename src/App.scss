@@ -1,14 +1,15 @@
 @font-face {
-  font-family: DS-DigitalB;
+  font-family: "DS-Digital Bold";
   src: url("./assets/fonts/DS-Digital/DS-DIGIB.TTF") format("truetype");
 }
 
 // Variables
-$display-font: "DS-DigitalB", "Digital-7", "VT323", "monospace";
+$display-font: "DS-Digital Bold", "DS-Digital", "Digital-7", "VT323",
+  "monospace";
 $display-color: hsla(0, 0%, 55%, 1);
 $label-font: "Orbitron", Arial, sans-serif;
 $button-font: "Quartz", "Segment7", "Orbitron", Arial, sans-serif;
-$bg-grad: linear-gradient(170deg, #de0000 0%, #4a0101 100%);
+$bg-grad: linear-gradient(170deg, #de0000 0%, #4a0101 60%);
 $border-radius: 12px;
 
 // Mixins
@@ -42,17 +43,13 @@ $border-radius: 12px;
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #121212;
 }
 .clock-container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: min-content;
-  width: min-content;
   @include box($bg-grad, 1.5rem, 1.5rem, $border-radius);
+  display: grid;
+  margin: auto;
+  max-width: min-content;
+  gap: 0.5rem;
 }
 
 /* Etiquetas */
@@ -80,27 +77,27 @@ body {
 }
 
 #time-clock {
-  @include font($display-font, 4rem, normal, 4px);
+  @include font($display-font, 4.5rem, normal, 4px);
   position: absolute;
-  padding: 0.6em 1em 0.6em 3.5em;
+  padding: 0.6em 1em 0.6em 3em;
   min-width: 360px;
 }
 
 #timer-label {
   @include font($display-font, 1.2rem, bold, 1.5px);
-  position: absolute;
-  right: 1em;
+  position: relative;
+  left: 15em;
   &.align-top {
-    top: 1.2em;
+    bottom: 5em;
   }
   &.align-bottom {
-    top: 2.5em;
+    bottom: 3.6em;
   }
 }
 
 #break-length,
 #session-length {
-  @include font($display-font, 2em, normal, 1.5px);
+  @include font($display-font, 2.5em, normal, 1.5px);
   padding: 0.3em 0.6em;
   min-width: 100%;
   text-align: center;
@@ -109,7 +106,7 @@ body {
 #session-label,
 #break-label {
   @include font($label-font, 1rem, bold, 1.5px);
-  @include box(rgba(3, 24, 73, 0.578), 0.4em, 0.8em, 6px);
+  @include box(rgba(3, 24, 73, 0.578), 0.4em, 0.8em);
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -140,23 +137,18 @@ body {
   gap: 1rem;
 }
 .clock-buttons {
-  display: flex;
-  justify-content: center;
-  min-width: 100%;
-  gap: 0.5rem;
+  display: contents;
 }
 
 // Botones principales
 #start_stop,
 #reset {
-  @include btn(#333c4a, #e9e9e9);
+  @include btn(none, white, $button-font, 1em, 10em);
   letter-spacing: 1px;
   text-transform: uppercase;
-  border: 2px solid #454e5c;
   padding: 1em 1em;
   margin: 0.5rem;
-  min-width: 10em;
-  box-shadow: 0 1px 2px 1px rgb(0, 0, 0);
+  min-height: 4em;
 
   &:hover {
     background: #2a3140;
@@ -165,12 +157,9 @@ body {
 }
 #start_stop {
   background-color: #2d98da;
-  color: #fff;
 }
 #reset {
   background-color: #b33939;
-  color: #fff;
-  height: 60px;
 }
 // Botones de inc/dec
 #session-increment,
@@ -206,7 +195,6 @@ body {
     color: #222;
   }
   button,
-  .length-control button,
   #start_stop,
   #reset {
     background: #ddd;
@@ -223,28 +211,52 @@ body {
   }
 }
 
-@media (min-width: 319px) and (max-width: 600px) {
+@media (max-width: 700px) and (max-height: 1000px) {
+  body {
+    font-size: smaller;
+    position: relative;
+  }
   .clock-container {
-    padding: 1rem 1rem;
-    max-width: 80%;
-    margin: auto;
+    padding: 2.5rem 3.5rem 1.5rem 3.5rem;
+    max-width: 15em;
+    display: table-caption;
+  }
+
+  #time-left {
+    padding: 0 2.5rem;
+    right: 20%;
   }
 
   #time-clock {
     font-size: 3rem;
-    padding: 0.5em 0.8em 0.5em 2em;
-    min-width: 250px;
+    min-width: 100%;
   }
 
   #timer-label {
-    font-size: 1rem;
-    left: auto;
-    &.align-top {
-      top: 1.8em;
-    }
-    &.align-bottom {
-      top: 3em;
-    }
+    left: 9em;
+    font-size: 1.2em;
+  }
+
+  .length-controls {
+    gap: 0.5rem;
+  }
+
+  .length-buttons-vertical {
+    gap: 0.7rem;
+  }
+
+  #session-label,
+  #break-label {
+    font-size: 0.9rem;
+    max-width: 75%;
+  }
+
+  #break-increment,
+  #break-decrement,
+  #session-increment,
+  #session-decrement {
+    font-size: 2.5em;
+    padding: 0.6em 0.6em;
   }
 
   #session-length,
@@ -252,7 +264,70 @@ body {
     min-width: 70%;
   }
 
-  .clock-buttons {
-    font-size: 0.7rem;
+  #start_stop,
+  #reset {
+    min-width: 10em;
+    font-size: 1em;
+    padding: 1.8em 0.8em;
+  }
+}
+
+@media (max-width: 549px) and (max-height: 800px) {
+  body {
+    font-size: smaller;
+    position: relative;
+  }
+  .clock-container {
+    padding: 2.5rem 3.5rem 1.5rem 3.5rem;
+    display: table-caption;
+  }
+
+  #time-left {
+    padding: 0 2.5rem;
+    right: 20%;
+  }
+
+  #time-clock {
+    font-size: 3rem;
+    min-width: 100%;
+  }
+
+  #timer-label {
+    left: 8em;
+    font-size: 1.2em;
+  }
+
+  .length-controls {
+    gap: 0.5rem;
+  }
+
+  .length-buttons-vertical {
+    gap: 0.7rem;
+  }
+
+  #session-label,
+  #break-label {
+    font-size: 0.9rem;
+    max-width: 75%;
+  }
+
+  #break-increment,
+  #break-decrement,
+  #session-increment,
+  #session-decrement {
+    font-size: 2.5em;
+    padding: 0.6em 0.6em;
+  }
+
+  #session-length,
+  #break-length {
+    min-width: 70%;
+  }
+
+  #start_stop,
+  #reset {
+    min-width: 10em;
+    font-size: 1em;
+    padding: 1.8em 0.8em;
   }
 }

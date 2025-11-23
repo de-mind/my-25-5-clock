@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./App copy.scss";
+import "./App.scss";
 
 class MyTimer extends React.Component {
   state = {
