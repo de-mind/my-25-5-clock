@@ -154,6 +154,8 @@ class MyTimer extends React.Component {
       <div id="timer" className="clock-container">
         <div id="time-left">
           <span id="time-clock"> {this.timeFormatter(this.state.timer)}</span>
+        </div>
+        <div id="timer-label-container">
           <span
             id="timer-label"
             className={this.state.isSession ? "align-top" : "align-bottom"}

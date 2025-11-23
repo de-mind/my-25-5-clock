@@ -85,13 +85,13 @@ body {
 
 #timer-label {
   @include font($display-font, 1.2rem, bold, 1.5px);
-  position: absolute;
-  right: 1.5em;
+  position: relative;
+  left: 15em;
   &.align-top {
-    top: 1.2em;
+    bottom: 5em;
   }
   &.align-bottom {
-    top: 2.5em;
+    bottom: 3.6em;
   }
 }
 
@@ -233,14 +233,8 @@ body {
   }
 
   #timer-label {
-    left: auto;
+    left: 9em;
     font-size: 1.2em;
-    &.align-top {
-      top: 1.8em;
-    }
-    &.align-bottom {
-      top: 3em;
-    }
   }
 
   .length-controls {
@@ -299,14 +293,8 @@ body {
   }
 
   #timer-label {
-    left: auto;
+    left: 8em;
     font-size: 1.2em;
-    &.align-top {
-      top: 1.8em;
-    }
-    &.align-bottom {
-      top: 3em;
-    }
   }
 
   .length-controls {
