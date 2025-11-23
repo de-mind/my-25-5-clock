@@ -32,7 +32,7 @@ class MyTimer extends React.Component {
           }
         }
       );
-    }, 100);
+    }, 1000);
     this.setState({ intervalId: timer });
   };
 
@@ -61,8 +61,8 @@ class MyTimer extends React.Component {
       isSession: true,
       isRunning: false,
       color: "hsla(0, 0%, 55%, 1)",
-      breakLength: 1,
-      sessionLength: 1,
+      breakLength: 5,
+      sessionLength: 25,
       timer: this.state.sessionLength * 60,
     });
   };
